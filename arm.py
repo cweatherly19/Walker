@@ -15,7 +15,7 @@ while key != ord('q'):
     #so the key can be read
     key = screen.getch()
     screen.clear()
-    screen.addstr('Hit q to quit. Use the W, A, S, and D to test if code works. Detected key: ')
+    screen.addstr('Hit Q to quit. Use the W, A, S, and D to test if code works. Detected key: ')
     #to define what keys preform commands
     if key != curses.ERR: # This is true if the user pressed something
         if key == ord('w'):
