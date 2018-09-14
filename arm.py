@@ -20,10 +20,20 @@ while key != ord('q'):
     if key != curses.ERR: # This is true if the user pressed something
         if key == ord('w'):
             screen.addstr('w key')
-            RPL.servoWrite(motor2, 1000)
+            place = place + 10
+            if place > 2000:
+                place = 2000
+            if place < 1000:
+                place = 1000
+            RPL.servoWrite(motor2, place)
         elif key == ord('s'):
             screen.addstr('s key')
-            RPL.servoWrite(motor2, 2000)
+            place2 = place - 10
+            if place > 2000:
+                place = 2000
+            if place < 1000:
+                place = 1000
+            RPL.servoWrite(motor2, place)
         elif key == ord('a'):
             screen.addstr('a key')
             RPL.servoWrite(motor1, 1000)
