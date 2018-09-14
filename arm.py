@@ -10,6 +10,7 @@ screen = curses.initscr()
 curses.halfdelay(3) # How many tenths of a second are waited, from 1 to 255
 #to read key inputs
 key = ''
+place = 1000
 #to end loop if 'q' is hit
 while key != ord('q'):
     #so the key can be read
