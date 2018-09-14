@@ -28,7 +28,7 @@ while key != ord('q'):
             RPL.servoWrite(motor2, place)
         elif key == ord('s'):
             screen.addstr('s key')
-            place2 = place - 10
+            place = place - 10
             if place > 2000:
                 place = 2000
             if place < 1000:
