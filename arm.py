@@ -47,7 +47,7 @@ while key != ord('q'):
             place2 = 400
         RPL.servoWrite(motor1, place2)
     #to reformat the terminal/end the curses program
-    screen.addstr(' place: ')
+    screen.addstr('place: ')
     screen.addstr(str(place))
     screen.addstr(' place2: ')
     screen.addstr(str(place2))
