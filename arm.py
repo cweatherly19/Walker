@@ -25,26 +25,26 @@ while key != ord('q'):
     if key == ord('w'):
         screen.addstr('w key')
         place = place + 10
-        if place > 2440:
-            place = 2440
+        if place > 2430:
+            place = 2430
         RPL.servoWrite(motor2, place)
     elif key == ord('s'):
         screen.addstr('s key')
         place = place - 10
-        if place < 390:
-           place = 390
+        if place < 380:
+           place = 380
         RPL.servoWrite(motor2, place)
     elif key == ord('a'):
         screen.addstr('a key')
         place2 = place2 + 10
-        if place2 > 2440:
-            place2 = 2440
+        if place2 > 2430:
+            place2 = 2430
         RPL.servoWrite(motor1, place2)
     elif key == ord('d'):
         screen.addstr('d key')
         place2 = place2 - 10
-        if place2 < 390:
-            place2 = 390
+        if place2 < 380:
+            place2 = 380
         RPL.servoWrite(motor1, place2)
     #to reformat the terminal/end the curses program
     screen.addstr(' place: ')
