@@ -24,22 +24,30 @@ while key != ord('q'):
     if key == ord('w'):
         screen.addstr('w key')
         place = place + 10
+        if place > 2440:
+            place = 2440
         RPL.servoWrite(motor2, place)
     elif key == ord('s'):
         screen.addstr('s key')
         place = place - 10
+         if place < 390:
+            place = 390
         RPL.servoWrite(motor2, place)
     elif key == ord('a'):
         screen.addstr('a key')
         place2 = place2 + 10
+        if place2 > 2440:
+            place2 = 2440
         RPL.servoWrite(motor1, place2)
     elif key == ord('d'):
         screen.addstr('d key')
         place2 = place2 - 10
+        if place2 < 390:
+            place2 = 390
         RPL.servoWrite(motor1, place2)
     #to reformat the terminal/end the curses program
-    screen.addstr('place:')
+    screen.addstr(' place: ')
     screen.addstr(str(place))
-    screen.addstr('place2:')
+    screen.addstr(' place2: ')
     screen.addstr(str(place2))
     curses.endwin()
