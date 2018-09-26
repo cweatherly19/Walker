@@ -31,8 +31,8 @@ while key != ord('q'):
     elif key == ord('s'):
         screen.addstr('s key')
         place = place - 10
-         if place < 390:
-            place = 390
+        if place < 390:
+           place = 390
         RPL.servoWrite(motor2, place)
     elif key == ord('a'):
         screen.addstr('a key')
