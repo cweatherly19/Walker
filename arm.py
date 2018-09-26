@@ -46,6 +46,8 @@ while key != ord('q'):
         if place2 < 400:
             place2 = 400
         RPL.servoWrite(motor1, place2)
+    else:
+        screen.addstr('void ')
     #to reformat the terminal/end the curses program
     screen.addstr('place: ')
     screen.addstr(str(place))
