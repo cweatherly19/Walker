@@ -10,8 +10,8 @@ screen = curses.initscr()
 #to read key inputs
 key = ''
 #to set motor position
-place = 390
-place2 = 390
+place = 400
+place2 = 400
 RPL.servoWrite(motor2, place)
 RPL.servoWrite(motor1, place2)
 screen.addstr('Hit Q to quit. Use the W, A, S, and D to test if code works. Detected key:')
@@ -25,26 +25,26 @@ while key != ord('q'):
     if key == ord('w'):
         screen.addstr('w key')
         place = place + 10
-        if place > 2430:
-            place = 2430
+        if place > 2400:
+            place = 2400
         RPL.servoWrite(motor2, place)
     elif key == ord('s'):
         screen.addstr('s key')
         place = place - 10
-        if place < 380:
-           place = 380
+        if place < 400:
+           place = 400
         RPL.servoWrite(motor2, place)
     elif key == ord('a'):
         screen.addstr('a key')
         place2 = place2 + 10
-        if place2 > 2430:
-            place2 = 2430
+        if place2 > 2400:
+            place2 = 2400
         RPL.servoWrite(motor1, place2)
     elif key == ord('d'):
         screen.addstr('d key')
         place2 = place2 - 10
-        if place2 < 380:
-            place2 = 380
+        if place2 < 400:
+            place2 = 400
         RPL.servoWrite(motor1, place2)
     #to reformat the terminal/end the curses program
     screen.addstr(' place: ')
