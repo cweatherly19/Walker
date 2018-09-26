@@ -10,10 +10,11 @@ screen = curses.initscr()
 #to read key inputs
 key = ''
 #to set motor position
-place = 1000
-place2 = 1000
+place = 390
+place2 = 390
 RPL.servoWrite(motor2, place)
 RPL.servoWrite(motor1, place2)
+screen.addstr('Hit Q to quit. Use the W, A, S, and D to test if code works. Detected key:')
 #to end loop if 'q' is hit
 while key != ord('q'):
     #so the key can be read
