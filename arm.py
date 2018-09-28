@@ -13,8 +13,8 @@ key = ''
 #to set motor position
 place = 400
 place2 = 400
-RPL.servoWrite(motor2, place)
-RPL.servoWrite(motor1, place2)
+RPL.servoWrite(motor2, int(place))
+RPL.servoWrite(motor1, int(place2))
 screen.addstr('Hit Q to quit. Use the W, A, S, and D to test if code works. Hit E or R to      change speed. Detected key: ')
 #to end loop if 'q' is hit
 while key != ord('q'):
@@ -28,19 +28,19 @@ while key != ord('q'):
         place = place + (10 * speed)
         if place > 2400:
             place = 2400
-        RPL.servoWrite(motor2, place)
+        RPL.servoWrite(motor2, int(place))
     elif key == ord('s'):
         screen.addstr('s key')
         place = place - (10 * speed)
         if place < 400:
            place = 400
-        RPL.servoWrite(motor2, place)
+        RPL.servoWrite(motor2, int(place))
     elif key == ord('a'):
         screen.addstr('a key')
         place2 = place2 + (10 * speed)
         if place2 > 2400:
             place2 = 2400
-        RPL.servoWrite(motor1, place2)
+        RPL.servoWrite(motor1, int(place2))
     elif key == ord('d'):
         screen.addstr('d key')
         place2 = place2 - (10 * speed)
@@ -54,7 +54,7 @@ while key != ord('q'):
         speed = 0.5 * speed
         if speed < 1:
             speed = 1
-        RPL.servoWrite(motor1, place2)
+        RPL.servoWrite(motor1, int(place2))
     else:
         screen.addstr('void')
     #to reformat the terminal/end the curses program
@@ -63,5 +63,6 @@ while key != ord('q'):
     screen.addstr(' place2: ')
     screen.addstr(str(place2))
     screen.addstr(' speed: ')
-    screen.addstr(str(speed))
+    screen.addstr(str(int(speed))
     curses.endwin()
+
