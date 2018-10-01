@@ -57,12 +57,12 @@ while key != ord('q'):
         RPL.servoWrite(motor1, int(place2))
     else:
         screen.addstr('void')
-    #to reformat the terminal/end the curses program
     screen.addstr(' place: ')
     screen.addstr(str(place))
     screen.addstr(' place2: ')
     screen.addstr(str(place2))
     screen.addstr(' speed: ')
     screen.addstr(str(int(speed))
+    #to reformat the terminal/end the curses program
     curses.endwin()
 
