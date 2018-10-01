@@ -20,14 +20,6 @@ screen.addstr('Hit Q to quit. Use the W, A, S, and D to test if code works. Hit 
 while key != ord('q'):
     #so the key can be read
     key = screen.getch()
-    screen.clear()
-    screen.addstr('Hit Q to quit. Use the W, A, S, and D to test if code works. Hit E or R to      change speed. Detected key: ')
-    screen.addstr(' place: ')
-    screen.addstr(str(place))
-    screen.addstr(' place2: ')
-    screen.addstr(str(place2))
-    screen.addstr(' speed: ')
-    screen.addstr(str(int(speed))
     #to define what keys preform commands
     if key == ord('w'):
         screen.addstr('w key')
@@ -63,5 +55,13 @@ while key != ord('q'):
         RPL.servoWrite(motor1, int(place2))
     else:
         screen.addstr('void')
+    screen.addstr('Hit Q to quit. Use the W, A, S, and D to test if code works. Hit E or R to      change speed. Detected key: ')
+    screen.addstr(' place: ')
+    screen.addstr(str(place))
+    screen.addstr(' place2: ')
+    screen.addstr(str(place2))
+    screen.addstr(' speed: ')
+    screen.addstr(str(int(speed))
     #to reformat the terminal/end the curses program
+    screen.clear()
     curses.endwin()
