@@ -65,4 +65,3 @@ while key != ord('q'):
         screen.addstr('void')
     #to reformat the terminal/end the curses program
     curses.endwin()
-
