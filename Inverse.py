@@ -36,6 +36,6 @@ while True:
     print int(a_elbow)
     print int(a_shoulder)
 
-    RPL.servoWrite(s_pin, a_elbow)
-    RPL.servoWrite(e_pin, a_shoulder)
+    RPL.servoWrite(s_pin, int(a_elbow))
+    RPL.servoWrite(e_pin, int(a_shoulder))
     continue
