@@ -2,6 +2,18 @@ import math
 import setup
 import RoboPiLib as RPL
 
+RPL.servoWrite(s_pin, 0)
+RPL.servoWrite(e_pin, 0)
+
+print 'How many gear-teeth does the shoulder-motor have?'
+sm_teeth = input('- ')
+print 'How many gear-teath does the shoulder-motor connecter have?'
+sj_teeth = input('- ')
+print 'How many gear-teeth does the elbow-motor have?'
+em_teeth = input('- ')
+print 'How many gear-teath does the elbow-motor connecter have?'
+ej_teeth = input('- ')
+
 while True:
     s_pin = 1
     e_pin = 0
@@ -30,8 +42,8 @@ while True:
 
     ###
 
-    a_elbow = (a_elbow * 2000 / math.pi) + 400
-    a_shoulder = (a_shoulder * 2000 / math.pi) + 400
+    a_elbow = (a_elbow * 2000 / math.pi + 400) * (em_teeth / ej_teeth)
+    a_shoulder = (a_shoulder * 2000 / math.pi + 400) * (sm_teeth / sj_teeth)
 
     print int(a_elbow)
     print int(a_shoulder)
