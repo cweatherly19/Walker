@@ -5,13 +5,13 @@ import RoboPiLib as RPL
 RPL.servoWrite(s_pin, 0)
 RPL.servoWrite(e_pin, 0)
 
-print 'How many gear-teeth does the shoulder-motor have?'
+print 'Enter numerator value for shoulder gear-ratio:'
 sm_teeth = input('- ')
-print 'How many gear-teath does the shoulder-motor connecter have?'
+print 'Enter demoninator value for shoulder gear-ratio:'
 sj_teeth = input('- ')
-print 'How many gear-teeth does the elbow-motor have?'
+print 'Enter numerator value for elbow gear-ratio:'
 em_teeth = input('- ')
-print 'How many gear-teath does the elbow-motor connecter have?'
+print 'Enter demoninator value for elbow gear-ratio:'
 ej_teeth = input('- ')
 
 while True:
