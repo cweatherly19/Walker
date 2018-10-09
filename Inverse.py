@@ -2,8 +2,8 @@ import math
 import setup
 import RoboPiLib as RPL
 
-RPL.servoWrite(s_pin, 0)
-RPL.servoWrite(e_pin, 0)
+RPL.servoWrite(s_pin, 400)
+RPL.servoWrite(e_pin, 400)
 
 print 'Enter numerator value for shoulder gear-ratio:'
 sm_teeth = input('- ')
