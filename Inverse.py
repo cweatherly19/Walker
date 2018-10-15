@@ -2,6 +2,14 @@ import math
 import setup
 import RoboPiLib as RPL
 
+s_pin = 1
+e_pin = 0
+
+d_one = 12 # this is the distance from shoulder to elbow
+d_two = 14 # distance from elbow to wrist
+sqd_one = math.pow(d_one, 2)
+sqd_two = math.pow(d_two, 2)
+
 RPL.servoWrite(s_pin, 400)
 RPL.servoWrite(e_pin, 400)
 
@@ -15,14 +23,6 @@ print 'Enter demoninator value for elbow gear-ratio:'
 ej_teeth = input('- ')
 
 while True:
-    s_pin = 1
-    e_pin = 0
-
-    d_one = 12 # this is the distance from shoulder to elbow
-    d_two = 14 # distance from elbow to wrist
-    sqd_one = math.pow(d_one, 2)
-    sqd_two = math.pow(d_two, 2)
-
     print 'Enter x value'
     x = input('- ') # given x input- how we tell robot where to go
     print 'Enter y value'
