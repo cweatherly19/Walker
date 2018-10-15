@@ -42,8 +42,8 @@ while True:
 
     ###
 
-    a_elbow = ((a_elbow * 2000 / math.pi) + 400) * (em_teeth / ej_teeth)
-    a_shoulder = ((a_shoulder * 2000 / math.pi) + 400) * (sm_teeth / sj_teeth)
+    a_elbow = (a_elbow * 2000 / math.pi) * (em_teeth / ej_teeth) + 400
+    a_shoulder = (a_shoulder * 2000 / math.pi) * (sm_teeth / sj_teeth) + 400
 
     print int(a_elbow)
     print int(a_shoulder)
