@@ -42,12 +42,17 @@ while True:
 
     ###
 
-    a_elbow = (a_elbow * 2000 / math.pi + 400) * (em_teeth / ej_teeth)
-    a_shoulder = (a_shoulder * 2000 / math.pi + 400) * (sm_teeth / sj_teeth)
+    a_elbow = ((a_elbow * 2000 / math.pi) + 400) * (em_teeth / ej_teeth)
+    a_shoulder = ((a_shoulder * 2000 / math.pi) + 400) * (sm_teeth / sj_teeth)
 
     print int(a_elbow)
     print int(a_shoulder)
 
     RPL.servoWrite(s_pin, int(a_elbow))
     RPL.servoWrite(e_pin, int(a_shoulder))
-    continue
+    print 'Enter a new input? (yes/no)'
+    go_again = raw_input('- ')
+    if go_again == 'yes':
+        continue
+    if go_again == 'no':
+        break
