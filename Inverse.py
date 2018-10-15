@@ -46,8 +46,8 @@ while True:
     a_shoulder = (a_shoulder * 2000 / math.pi) * (sm_teeth / sj_teeth) + 400
 
     print 'Gear rations:'
-    print int(em_teeth / ej_teeth)
-    print int(sm_teeth / sj_teeth)
+    print (em_teeth / ej_teeth)
+    print (sm_teeth / sj_teeth)
 
     print 'Motor positions:'
     print int(a_elbow)
