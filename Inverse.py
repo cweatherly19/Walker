@@ -1,4 +1,5 @@
 import math
+import fractions
 import setup
 import RoboPiLib as RPL
 
@@ -13,14 +14,18 @@ sqd_two = math.pow(d_two, 2)
 RPL.servoWrite(s_pin, 400)
 RPL.servoWrite(e_pin, 400)
 
+#set up gear ratios
 print 'Enter numerator value for shoulder gear-ratio:'
 sm_teeth = input('- ')
 print 'Enter demoninator value for shoulder gear-ratio:'
 sj_teeth = input('- ')
+fraction1 = fractions.Fraction(sm_teeth, sj_teeth)
+
 print 'Enter numerator value for elbow gear-ratio:'
 em_teeth = input('- ')
 print 'Enter demoninator value for elbow gear-ratio:'
 ej_teeth = input('- ')
+fraction2 = fractions.Fraction(em_teeth, ej_teeth)
 
 while True:
     print 'Enter x value'
@@ -42,16 +47,14 @@ while True:
 
     ###
 
-    a_elbow = (a_elbow * 2000 / math.pi) * (em_teeth / ej_teeth) + 400
-    a_shoulder = (a_shoulder * 2000 / math.pi) * (sm_teeth / sj_teeth) + 400
-
-    print 'Gear rations:'
-    print (em_teeth / ej_teeth)
-    print (sm_teeth / sj_teeth)
+    a_elbow = fractions.Fraction((a_elbow * 2000), math.pi) * fraction2 + 400
+    a_shoulder = fractions.Fraction((a_shoulder * 2000), math.pi) * fraction1 + 400
 
     print 'Motor positions:'
     print int(a_elbow)
     print int(a_shoulder)
+
+    print '(x, y) coordinate: (%i, %i)' %(x, y)
 
     RPL.servoWrite(s_pin, int(a_elbow))
     RPL.servoWrite(e_pin, int(a_shoulder))
