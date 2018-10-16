@@ -45,10 +45,10 @@ while True:
     a_shoulder = a_four + a_two # angle the shoulder joint should be at from the 0 line
     a_elbow = a_three # elbow angle, flush back to shoulder is 0
 
-    ###
+    ######################################################################
 
-    a_elbow = fractions.Fraction((a_elbow * 2000), math.pi) * fraction2 + 400
-    a_shoulder = fractions.Fraction((a_shoulder * 2000), math.pi) * fraction1 + 400
+    a_elbow = (a_elbow * 2000 / math.pi) * fraction2 + 400
+    a_shoulder = (a_shoulder * 2000 / math.pi) * fraction1 + 400
 
     print 'Motor positions:'
     print int(a_elbow)
