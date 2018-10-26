@@ -19,13 +19,13 @@ print 'Enter numerator value for shoulder gear-ratio:'
 sm_teeth = input('- ')
 print 'Enter demoninator value for shoulder gear-ratio:'
 sj_teeth = input('- ')
-fraction1 = fractions.Fraction(sm_teeth, sj_teeth)
+fraction1 = fractions.Fraction(sj_teeth, sm_teeth)
 
 print 'Enter numerator value for elbow gear-ratio:'
 em_teeth = input('- ')
 print 'Enter demoninator value for elbow gear-ratio:'
 ej_teeth = input('- ')
-fraction2 = fractions.Fraction(em_teeth, ej_teeth)
+fraction2 = fractions.Fraction(ej_teeth, em_teeth)
 
 while True:
     print 'Enter x value'
@@ -56,6 +56,12 @@ while True:
 
     print '(x, y) coordinate: (%i, %i)' %(x, y)
 
+    if a_elbow > 2000:
+        a_elbow = 2000
+        print 'Elbow gear ratio prohibiting motion.'
+    if a_shoulder > 2000:
+        a_shoulder = 2000
+        print 'Shoulder gear ration prohibiting motion.'
     RPL.servoWrite(s_pin, int(a_elbow))
     RPL.servoWrite(e_pin, int(a_shoulder))
     print 'Enter a new input? (yes/no)'
@@ -64,3 +70,4 @@ while True:
         continue
     if go_again == 'no':
         break
+
