@@ -15,15 +15,15 @@ RPL.servoWrite(s_pin, 400)
 RPL.servoWrite(e_pin, 400)
 
 #set up gear ratios
-print 'Enter numerator value for shoulder gear-ratio:'
+print 'Enter numerator value for shoulder gear-ratio (connected to motor):'
 sm_teeth = input('- ')
-print 'Enter demoninator value for shoulder gear-ratio:'
+print 'Enter demoninator value for shoulder gear-ratio (off motor):'
 sj_teeth = input('- ')
 fraction1 = fractions.Fraction(sj_teeth, sm_teeth)
 
-print 'Enter numerator value for elbow gear-ratio:'
+print 'Enter numerator value for elbow gear-ratio (connected to motor):'
 em_teeth = input('- ')
-print 'Enter demoninator value for elbow gear-ratio:'
+print 'Enter demoninator value for elbow gear-ratio (off motor):'
 ej_teeth = input('- ')
 fraction2 = fractions.Fraction(ej_teeth, em_teeth)
 
@@ -68,6 +68,5 @@ while True:
     go_again = raw_input('- ')
     if go_again == 'yes':
         continue
-    if go_again == 'no':
+    else:
         break
-
