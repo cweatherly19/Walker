@@ -87,12 +87,6 @@ while True:
     print 'Enter a new input? (yes/no)'
 
     #move the motors to desired positions
-    RPL.servoWrite(s_pin, int(a_elbow))
-    RPL.servoWrite(e_pin, int(a_shoulder))
-
-    go_again = raw_input('- ')
-    if go_again == 'yes':
-        print ''
-        continue
-    else:
-        break
+    RPL.servoWrite(s_pin, a_elbow)
+    RPL.servoWrite(e_pin, a_shoulder)
+    continue
