@@ -69,6 +69,7 @@ while True:
         print 'Elbow error'
         print ''
         a_elbow = 400
+    a_elbow = int(a_elbow)
     a_shoulder = (a_shoulder * 2000 / math.pi) * fraction_shoulder + 400
     if a_shoulder > 2400:
         print 'Shoulder error'
@@ -78,13 +79,12 @@ while True:
         print 'Shoulder error'
         print ''
         a_shoulder = 400
+    a_shoulder = int(a_shoulder)
     print 'Motor positions:'
     print 'Elbow - %i' %a_elbow
     print 'Shoulder - %i' %a_shoulder
     print ''
     print '(x, y) coordinate: (%i, %i)' %(x, y)
-    print ''
-    print 'Enter a new input? (yes/no)'
 
     #move the motors to desired positions
     RPL.servoWrite(s_pin, a_elbow)
