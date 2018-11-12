@@ -7,8 +7,8 @@ s_pin = 1
 e_pin = 0
 
 #reset motor positions
-RPL.servoWrite(s_pin, 400)
-RPL.servoWrite(e_pin, 2400)
+RPL.servoWrite(s_pin, 2400)
+RPL.servoWrite(e_pin, 400)
 
 print 'Enter distance from shoulder to elbow:'
 d_one = input('- ') # this is the distance from shoulder to elbow
