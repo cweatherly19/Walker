@@ -7,8 +7,8 @@ s_pin = 1
 e_pin = 0
 
 #reset motor positions
-RPL.servoWrite(s_pin, 2400)
-RPL.servoWrite(e_pin, 400)
+RPL.servoWrite(s_pin, 400)
+RPL.servoWrite(e_pin, 2400)
 
 print 'Enter distance from shoulder to elbow:'
 d_one = input('- ') # this is the distance from shoulder to elbow
@@ -72,7 +72,7 @@ while True:
 
     ######################################################################
 
-    a_elbow = (a_elbow * 2000 / math.pi) * fraction_eblow + 400
+    a_elbow = (a_elbow * 2000 / math.pi) * fraction_eblow / 2 + 400
     if a_elbow > 2400:
         print 'Elbow error'
         print ''
@@ -82,7 +82,7 @@ while True:
         print ''
         a_elbow = 400
     a_elbow = int(a_elbow)
-    a_shoulder = (a_shoulder * 2000 / math.pi) * fraction_shoulder + 400
+    a_shoulder = (a_shoulder * 2000 / math.pi) * fraction_shoulder / 2 + 400
     if a_shoulder > 2400:
         print 'Shoulder error'
         print ''
