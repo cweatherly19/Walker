@@ -20,15 +20,25 @@ d_two = input('- ') # distance from elbow to wrist
 sqd_one = math.pow(d_one, 2)
 sqd_two = math.pow(d_two, 2)
 
+print ''
 #set up gear ratios
 print 'Enter numerator value for shoulder gear-ratio (connected to motor):'
 sm_teeth = input('- ')
+
+print ''
+
 print 'Enter demoninator value for shoulder gear-ratio (off motor):'
 sj_teeth = input('- ')
+
 fraction_shoulder = fractions.Fraction(sj_teeth, sm_teeth)
+
+print ''
 
 print 'Enter numerator value for elbow gear-ratio:'
 em_teeth = input('- ')
+
+print ''
+
 print 'Enter demoninator value for elbow gear-ratio:'
 ej_teeth = input('- ')
 fraction_eblow = fractions.Fraction(ej_teeth, em_teeth)
@@ -36,6 +46,8 @@ fraction_eblow = fractions.Fraction(ej_teeth, em_teeth)
 # NEED GEAR RATIOS FOR THIS TO WORK #
 
 while True:
+    print ''
+
     print 'Enter x value'
     x = input('- ') # given x input- how we tell robot where to go
 
