@@ -1,6 +1,7 @@
 # inverse kinimatics code
 import math
 import time
+import fractions
 import setup
 import RoboPiLib as RPL
 s_pin = 0 # shoulder pin
