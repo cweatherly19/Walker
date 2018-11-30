@@ -1,104 +1,60 @@
+# inverse kinimatics code
 import math
-import fractions
-import setup
-import RoboPiLib as RPL
-
-s_pin = 1
-e_pin = 0
-
-#reset motor positions
-RPL.servoWrite(s_pin, 400)
-RPL.servoWrite(e_pin, 2400)
-
-print 'Enter distance from shoulder to elbow:'
-d_one = input('- ') # this is the distance from shoulder to elbow
-
-print ''
-
-print 'Enter distance from elbow to wrist:'
-d_two = input('- ') # distance from elbow to wrist
-sqd_one = math.pow(d_one, 2)
-sqd_two = math.pow(d_two, 2)
-
-print ''
-#set up gear ratios
-print 'Enter numerator value for shoulder gear-ratio (connected to motor):'
-sm_teeth = input('- ')
-
-print ''
-
-print 'Enter demoninator value for shoulder gear-ratio (off motor):'
-sj_teeth = input('- ')
-
-fraction_shoulder = fractions.Fraction(sj_teeth, sm_teeth)
-
-print ''
-
-print 'Enter numerator value for elbow gear-ratio:'
-em_teeth = input('- ')
-
-print ''
-
-print 'Enter demoninator value for elbow gear-ratio:'
-ej_teeth = input('- ')
-fraction_eblow = fractions.Fraction(ej_teeth, em_teeth)
-
-# NEED GEAR RATIOS FOR THIS TO WORK #
-
+import time
+s_pin = 0 # shoulder pin
+e_pin = 1 # elbow pin
+d_one = 10 # the distance from shoulder to elbow
+d_two = 10 # distance from elbow to wrist
+fraction_shoulder = 1 / 1 # gear ration for shoulder motor
+fraction_elbow = 1 / 1 # gear ratio for elbow motor
+# to determine where the arm should go
 while True:
-    print ''
-
     print 'Enter x value'
-    x = input('- ') # given x input- how we tell robot where to go
-
-    print ''
-
+    x = input('- ') # given x input
     print 'Enter y value'
-    y = input('- ') # given y input- how we tell robot where to go
-
-    print ''
-
-    #####################################################################################################
-
-    d_three = math.sqrt(math.pow(y, 2) + math.pow(x, 2)) # determining distance from shoulder to wrist
-    sqd_three = math.pow(d_three, 2)
-    a_three = math.acos((sqd_one + sqd_two - sqd_three) / (2 * d_one * d_two)) # angle of elbow using law of cosines
-    a_two = math.asin((d_two * math.sin(a_three)) / d_three) # angle between shoulder and wrist (put in a try?)
-    a_one = 2 * math.pi - (a_three + a_two) # angle between elbow and shoulder (dont really need)
-    a_four = math.atan2(y , x) # angle between 0 line and wrist
-
-    a_shoulder = a_four + a_two # angle the shoulder joint should be at from the 0 line
-    a_elbow = a_three # elbow angle, flush back to shoulder is 0
-
-    ######################################################################
-
-    a_elbow = (a_elbow * 2000 / math.pi) * fraction_eblow / 2 + 400
-    if a_elbow > 2400:
-        print 'Elbow error'
-        print ''
-        a_elbow = 2400
-    if a_elbow < 400:
-        print 'Elbow error'
-        print ''
-        a_elbow = 400
-    a_elbow = int(a_elbow)
-    a_shoulder = (a_shoulder * 2000 / math.pi) * fraction_shoulder / 2 + 400
-    if a_shoulder > 2400:
-        print 'Shoulder error'
-        print ''
-        a_shoulder = 2400
-    if a_shoulder < 400:
-        print 'Shoulder error'
-        print ''
-        a_shoulder = 400
-    a_shoulder = int(a_shoulder)
-    print 'Motor positions:'
-    print 'Elbow - %i' %a_elbow
-    print 'Shoulder - %i' %a_shoulder
-    print ''
-    print '(x, y) coordinate: (%i, %i)' %(x, y)
-
-    #move the motors to desired positions
-    RPL.servoWrite(s_pin, a_elbow)
-    RPL.servoWrite(e_pin, a_shoulder)
+    y = input('- ') # given y input
+############################################################################################################
+    start = time.time() # to test how long it takes the code to run
+    d_three = math.sqrt(math.pow(y, 2) + math.pow(x, 2)) # determine distance from shoulder to wrist
+    # to see if reaching the point is possible
+    outer_reach = d_one + d_two # determine if the point is too far
+    if d_three > outer_reach:
+        print 'Out of reach: too far away.'
+        continue
+    inner_reach = d_one - d_two # determine if the point is too close
+    if d_three < inner_reach:
+        print 'Out of reach: too close.'
+        continue
+    if y == x == 0:
+        print 'Too close to origin.'
+        continue
+    # finding angle values
+    a_three = math.acos((math.pow(d_one, 2) + math.pow(d_two, 2) - math.pow(y, 2) - math.pow(x, 2)) / (2 * d_one * d_two)) # angle for elbow
+    a_two = math.asin(d_two * math.sin(a_three) / d_three) # angle between shoulder and wrist
+    a_four = math.atan2(y,x) # angle between 0 line and wrist
+    # check if values are possible or not
+    print 'Situation in relations to axis: (%i, %i)' %(x, y)
+    if y >= 0:
+        print 'Point above x axis'
+        a_shoulder = a_four + a_two
+    elif a_two >= math.fabs(a_four):
+        print 'Point above x axis, elbow is not'
+        a_shoulder = a_two - a_four
+    elif a_two < math.fabs(a_four):
+        print 'Arm below x axis'
+        a_shoulder = a_two - math.fabs(a_four)
+    # to give outputs
+    input_elbow = int(a_three * 2000 / math.pi + 400) # so the elbow will be at its floor at the minimum value
+    input_shoulder = int(a_shoulder * 2000 / math.pi + 1400) # so there can be negative y values
+    print_shoulder = a_shoulder * 180 / math.pi
+    print_elbow = a_three * 180 / math.pi
+    end = time.time()
+############################################################################################################
+    print 'Distance from base: %i units' % d_three
+    print 'Shoulder: %i degrees' % print_shoulder
+    print 'Elbow: %i degrees' % print_elbow
+    print 'Shoulder motor value: %i' % input_shoulder
+    print 'Elbow motor value: %i' % input_elbow
+    print 'Time to get answer:'
+    print end - start
     continue
