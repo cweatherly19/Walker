@@ -9,7 +9,7 @@ RPL.servoWrite(s_pin, 1400)
 RPL.servoWrite(e_pin, 400)
 d_one = 10 # the distance from shoulder to elbow
 d_two = 10 # distance from elbow to wrist
-fraction_shoulder = 1 / 1 # gear ration for shoulder motor
+fraction_shoulder = 36 / 25 # gear ration for shoulder motor
 fraction_elbow = 1 / 1 # gear ratio for elbow motor
 # to determine where the arm should go
 while True:
@@ -48,8 +48,8 @@ while True:
         print 'Arm below x axis'
         a_shoulder = a_two - math.fabs(a_four)
     # to give outputs
-    input_elbow = int(a_three * 2000 / math.pi + 400) # so the elbow will be at its floor at the minimum value
-    input_shoulder = int(a_shoulder * 2000 / math.pi + 1400) # so there can be negative y values
+    input_elbow = int(fraction_elbow * a_three * 2000 / math.pi + 400) # so the elbow will be at its floor at the minimum value
+    input_shoulder = int(fraction_shoulder * a_shoulder * 2000 / math.pi + 1400) # so there can be negative y values
     print_shoulder = a_shoulder * 180 / math.pi
     print_elbow = a_three * 180 / math.pi
     end = time.time()
