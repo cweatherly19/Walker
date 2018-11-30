@@ -1,8 +1,11 @@
 # inverse kinimatics code
 import math
 import time
+import RoboPiLib as RPL
 s_pin = 0 # shoulder pin
 e_pin = 1 # elbow pin
+RPL.servoWrite(s_pin, 1400)
+RPL.servoWrite(e_pin, 400)
 d_one = 10 # the distance from shoulder to elbow
 d_two = 10 # distance from elbow to wrist
 fraction_shoulder = 1 / 1 # gear ration for shoulder motor
@@ -49,6 +52,8 @@ while True:
     print_shoulder = a_shoulder * 180 / math.pi
     print_elbow = a_three * 180 / math.pi
     end = time.time()
+    RPL.servoWrite(s_pin, input_shoulder)
+    RPL.servoWrite(e_pin, input_elbow)
 ############################################################################################################
     print 'Distance from base: %i units' % d_three
     print 'Shoulder: %i degrees' % print_shoulder
