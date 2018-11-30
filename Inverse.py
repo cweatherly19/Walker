@@ -9,8 +9,8 @@ RPL.servoWrite(s_pin, 1400)
 RPL.servoWrite(e_pin, 400)
 d_one = 10 # the distance from shoulder to elbow
 d_two = 10 # distance from elbow to wrist
-fraction_shoulder = 36 / 25 # gear ration for shoulder motor
-fraction_elbow = 1 / 1 # gear ratio for elbow motor
+fraction_shoulder = fractions.Fraction(20, 24) # gear ration for shoulder motor
+fraction_elbow = fractions.Fraction(1, 1) # gear ratio for elbow motor
 # to determine where the arm should go
 while True:
     print 'Enter x value'
