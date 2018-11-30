@@ -7,7 +7,7 @@ import RoboPiLib as RPL
 s_pin = 0 # shoulder pin
 e_pin = 1 # elbow pin
 RPL.servoWrite(s_pin, 1400)
-RPL.servoWrite(e_pin, 400)
+RPL.servoWrite(e_pin, 2400)
 d_one = 10 # the distance from shoulder to elbow
 d_two = 10 # distance from elbow to wrist
 fraction_shoulder = fractions.Fraction(20, 24) # gear ration for shoulder motor
