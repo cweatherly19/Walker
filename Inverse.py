@@ -6,7 +6,7 @@ import setup
 import RoboPiLib as RPL
 s_pin = 0 # shoulder pin
 e_pin = 1 # elbow pin
-RPL.servoWrite(s_pin, 1400)
+RPL.servoWrite(s_pin, 400)
 RPL.servoWrite(e_pin, 2400)
 d_one = 10 # the distance from shoulder to elbow
 d_two = 10 # distance from elbow to wrist
@@ -50,7 +50,7 @@ while True:
         a_shoulder = a_two - math.fabs(a_four)
     # to give outputs
     input_elbow = int(fraction_elbow * a_three * 2000 / math.pi + 400) # so the elbow will be at its floor at the minimum value
-    input_shoulder = int(fraction_shoulder * a_shoulder * 2000 / math.pi + 1400) # so there can be negative y values
+    input_shoulder = int(fraction_shoulder * a_shoulder * 2000 / math.pi + 400) # so there can be negative y values
     print_shoulder = a_shoulder * 180 / math.pi
     print_elbow = a_three * 180 / math.pi
     end = time.time()
