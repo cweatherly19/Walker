@@ -1,66 +1,45 @@
-#to access files needed to run the code
+#the file that reads key inputs
 import curses
-import setup
-import RoboPiLib as RPL
-#to define the 'screen' in front of functions
+#to set starting coordinates for curses to track
+x = 10; y = 10
+#for defining the lengths of the arm
+segment_1 = 10; segment_2 = 10
+#to enter into the curses screen
 screen = curses.initscr()
-#to define motor position
-motor1 = 0
-motor2 = 1
-#to read key inputs
+#so important text can stand out
+curses.start_color(); curses.use_default_colors(); curses.init_pair(1, curses.COLOR_RED, -1); curses.init_pair(2, curses.COLOR_GREEN, -1)
+#so the only things that print are the returned values
+curses.noecho()
+#so the screen will update every tenth of a second (from 1 to 225)
+curses.halfdelay(1)
+#to set key value to be read later
 key = ''
-#to set motor position
-place = 400
-place2 = 400
-#set multiplier of speed
-speed = 1
-#set positions of motors
-RPL.servoWrite(motor2, int(place))
-RPL.servoWrite(motor1, int(place2))
-#to tell the user what to do
-screen.addstr('Hit Q to quit. Use the W, A, S, and D to test if code works. Hit E or R to      change speed. place: 400 place2: 400 speed: 1')
 #to end loop if 'q' is hit
 while key != ord('q'):
-    #so the key can be read
+    #so key presses can be read
     key = screen.getch()
+    #to reformat the screen every time something is hit
     screen.clear()
-    screen.addstr('Hit Q to quit. Use the W, A, S, and D to test if code works. Hit E or R to      change speed.')
-    screen.addstr(' place: ')
-    screen.addstr(str(place))
-    screen.addstr(' place2: ')
-    screen.addstr(str(place2))
-    screen.addstr(' speed: ')
-    screen.addstr(str(speed))
-    if key == ord('r'):
-        speed = speed * 2
-        if speed > 8:
-            speed = 8
-    elif key == ord('e'):
-        speed = speed / 2
-        if speed < 1:
-            speed = 1
+    #to format and give instructions for the arm use
+    screen.addstr(0, 0, 'Hit   to quit. Use  ,  ,  , and   to move the arm.'); screen.addstr(0, 4, 'Q', curses.color_pair(1)); screen.addstr(0, 19, 'W', curses.color_pair(2)); screen.addstr(0, 22, 'A', curses.color_pair(2)); screen.addstr(0, 25, 'S', curses.color_pair(2)); screen.addstr(0, 32, 'D', curses.color_pair(2)); screen.addstr(0, 51, 'Detected key:')
     #to define what keys preform commands
-    elif key == ord('w'):
-        place = place + int(10 * speed)
-        if place > 2400:
-            place = 2400
-        RPL.servoWrite(motor2, int(place))
-    elif key == ord('s'):
-        place = place - int(10 * speed)
-        if place < 400:
-           place = 400
-        RPL.servoWrite(motor2, int(place))
-    elif key == ord('a'):
-        place2 = place2 + int(10 * speed)
-        if place2 > 2400:
-            place2 = 2400
-        RPL.servoWrite(motor1, int(place2))
-    elif key == ord('d'):
-        place2 = place2 - int(10 * speed)
-        if place2 < 400:
-            place2 = 400
-        RPL.servoWrite(motor1, int(place2))
-    else:
-        screen.addstr(' invalid input')
-    #to reformat the terminal/end the curses program
-    curses.endwin()
+    if key != curses.ERR: # This is true if the user pressed something
+        if key == ord('w'):
+            screen.addstr(0, 65, 'w key', curses.color_pair(2))
+            #y = y + 0.2
+        elif key == ord('s'):
+            screen.addstr(0, 65, 's key', curses.color_pair(2))
+            #y = y - 0.2
+        elif key == ord('a'):
+            screen.addstr(0, 65, 'a key', curses.color_pair(2))
+            #x = x + 0.2
+        elif key == ord('d'):
+            screen.addstr(0, 65, 'd key', curses.color_pair(2))
+            #x = x - 0.2
+        else:
+            screen.addstr(0, 65, 'invalid', curses.color_pair(1))
+            #to signify that there is an invalid input
+            curses.beep()
+        #to reformat the terminal after the curses file closes
+        curses.endwin()
+
